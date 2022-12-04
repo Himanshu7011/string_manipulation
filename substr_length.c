@@ -2,6 +2,7 @@
 #include<string.h>
 #include<stdbool.h>
 
+/* Set the bit in array based on character value. */
 void fillArray(int *a, char ch){
 	
 	if(ch >= 65 && ch <= 90) {
@@ -13,6 +14,14 @@ void fillArray(int *a, char ch){
 	}
 }
 
+/* 
+ * Check if the bit is set or not, if set return false.
+ * 
+ * Return Value: 
+ * False - If [ch] bit is set.
+ * True - If [ch] bit is clear.
+ *
+ */
 bool checkArray(int *a, char ch) {
 
 	if(ch >= 65 && ch <= 90) {
@@ -30,26 +39,20 @@ bool checkArray(int *a, char ch) {
 	}
 }
 
+/* main() to find largest substring will repetition */
 int main(){
-
 	int array[26];
-	int len = 0;
-	int subStrCount = 0;
-	int i,j;
-	char *str = "abcdjfghjfabcd";
-	int subCount = 0, big = 0;
-	int temp = 0;
-	bool tf;
+	int i, j, subCount = 0;
+	char *str = "abcabcabc";
 	memset(array, 0, 26);
 	for(i=0; i<strlen(str); i++) {
-		temp = i;
 		for(j=i;j<strlen(str); j++) {
-			if(str[temp] == str[j]) {
+			if(str[i] == str[j]) {
 				if(checkArray(array, str[j]))
 					subCount++;
 				fillArray(array, str[j]);
 			} 
 		}
 	}
-	printf("Biggest sub string length = %d\n", subCount);
+	printf("Largest sub-string length = %d\n", subCount);
 }
